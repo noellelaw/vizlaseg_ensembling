@@ -174,6 +174,9 @@ class CLIPDenseBase(nn.Module):
                 if i in extract_layers:
                     affinities += [aff_per_head]
 
+                    #if self.n_tokens is not None:
+                    #    activations += [nnf.interpolate(x, inp_size, mode='bilinear', align_corners=True)]
+                    #else:
                     activations += [x]
 
                 if len(extract_layers) > 0 and i == max(extract_layers) and skip:
@@ -320,6 +323,8 @@ class CLIPDensePredT(CLIPDenseBase):
                 nn.ConvTranspose2d(reduce_dim // 2, 1, kernel_size=tp_kernels[1], stride=tp_kernels[1]),               
             )
 
+#        self.trans_conv = nn.ConvTranspose2d(reduce_dim, 1, trans_conv_ks, stride=trans_conv_ks)
+        
         assert len(self.extract_layers) == depth
 
         self.reduces = nn.ModuleList([nn.Linear(768, reduce_dim) for _ in range(depth)])
@@ -352,7 +357,7 @@ class CLIPDensePredT(CLIPDenseBase):
 
         bs, dev = inp_image.shape[0], x_inp.device
 
-        cond = self.get_cond_vec(conditional)
+        cond = self.get_cond_vec(conditional, bs)
 
         visual_q, activations, _ = self.visual_forward(x_inp, extract_layers=[0] + list(self.extract_layers))
 
