@@ -80,7 +80,7 @@ def getPrediction( config, groundTruthFile ):
         if not os.path.isdir(rootPath):
             printError("Could not find a result root folder. Please read the instructions of this method.")
 
-    config.predictionPath = '/home/noelle/Desktop/MSThesis/kitti_benchmark_suite/devkit/devkit/evaluation/KITTI_RESULTS/results/'
+    config.predictionPath = '/content/vlseg_ensembling/kitti_benchmark_suite/devkit/devkit/evaluation/KITTI_RESULTS/results/'
 
     # walk the prediction path, if not happened yet
     if not config.predictionWalk:
