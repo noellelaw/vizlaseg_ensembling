@@ -126,7 +126,7 @@ else:
 
 # Parameters that should be modified by user
 config.exportFile         = os.path.join( config.kittiPath , "evaluationResults" , "resultPixelLevelSemanticLabeling.json" )
-config.groundTruthSearch  = '/home/noelle/Desktop/MSThesis/kitti_benchmark_suite/devkit/devkit/evaluation/KITTI_RESULTS/training/semantic/'
+config.groundTruthSearch  = '/content/vlseg_ensembling/kitti_benchmark_suite/devkit/devkit/evaluation/KITTI_RESULTS/training/semantic/'
 
 # Remaining params
 config.evalInstLevelScore = True
